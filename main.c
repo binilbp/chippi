@@ -74,7 +74,6 @@ void chippi_hello(char *user_name) {
 			user_name[strcspn(user_name, "\n")] = '\0';
 		} else {
 			//add '\0' at the last of the array
-//!!BUG!! SOMEPROBLEM WITH NAME CHAR COUNT
 			user_name[9] = '\0';	
 		}
 		printf("Hi there %s\n",user_name);
@@ -98,21 +97,23 @@ void chippi_bye(char *user_name) {
 
 char *read_input(void) {
 	//to track the size mannually
-	size_t current_capacity = 256;
+	size_t capacity = 256;
+	size_t current_capacity = capacity;
 
-	char temp_buffer[current_capacity] = {};
+	char temp_buffer[capacity] = {};
 
 	//sizeof(char) is 1, essentially same as providing the size directly
-	char *buffer = malloc(current_capacity);
+	char *buffer = malloc(capacity);
 	//setup the raw memory for storing string
 	buffer[0] = '\0';
 
 
 	//fgets only read until the max size or '\n' or EOF
 	//for the case with multiple lines, we do while loop
+	//cuz '\n' might not be in the char of given size
 	while(1){
 
-		if(fgets(buffer, sizeof(temp_buffer), stdin) == NULL) {
+		if(fgets(temp_buffer, sizeof(temp_buffer), stdin) == NULL) {
 
 			//ideally input should be either '\n' or some value
 			//therefore with NULL we return NULL
@@ -125,14 +126,14 @@ char *read_input(void) {
 		//check if we need to increase memory before appending continuous data
 		if(strlen(temp_buffer) + strlen(buffer) >= current_capacity){
 			//true means we need to increase the memory size
-			char *temp = realloc(buffer, current_capacity+current_capacity);
+			char *temp = realloc(buffer, current_capacity+capacity);
 			if (temp == NULL){
 				perror("Allocation failed\n");
 				return NULL;
 			}
 
 			//also note the change mannually since reallocation succeeded
-			current_capacity += current_capacity;
+			current_capacity += capacity;
 
 			//update the pointer old pointer with new larger sized memory pointer
 			buffer = temp;
@@ -151,7 +152,6 @@ char *read_input(void) {
 			buffer[pos] = '\0';	
 			return buffer;
 		}
-		
 	}
 }
 
