@@ -6,9 +6,9 @@ As the name suggests, this project is a hobby attempt to build a lightweight, mi
 
 
 ## Current Status 
-- support single line input only
-- no execution
-- a fun simple chippi greeting feature (run with `hello` command)
+- dev focus on user input reading
+- no parsing or execution
+- fun simple chippi features (eg:`hello` command)
 - support exit on pressing `Ctrl+D` or typing `exit` in user input
 
 ## Testing Out
