@@ -17,7 +17,7 @@ void chippi(void) {
 
 	//welcome statement with seashell unicode
 	printf("Welcome to chippi \U0001F41A\n");
-	printf("A simple shell to have fun with ;) type \"hello\" for starters\n");
+	printf("A simple shell to have fun with ;) type \"hello\" for starters\n\n");
 
 	//used to store username for chippi_hello function
 	char user_name[9] = {0};
@@ -64,8 +64,7 @@ void chippi_hello(char *user_name) {
 
 	//if no username set till now
 	if (user_name[0] == '\0'){
-		printf("Hi there .... What should i call u?\n");
-		printf("Please enter what i should call u [max 8char]: ");
+		printf("Hi there .... What should i call u? (max 8 letters):");
 		fgets(user_name,9 , stdin);	
 
 		//check if '\n' is persent in username
