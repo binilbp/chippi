@@ -20,6 +20,7 @@ As the name suggests, this project is a hobby attempt to build a lightweight, mi
 ### Compile 
 ```bash
 git clone https://github.com/binilbp/chippi.git
+cd chippi
 gcc main.c chippi.c commands.c input.c -o chippi
 ```
 ### Run
